@@ -1,4 +1,4 @@
-# xxhash in pure Java
+# xxHash in pure Java
 
 [xxHash](https://code.google.com/p/xxhash/) pure Java implementation.
 
