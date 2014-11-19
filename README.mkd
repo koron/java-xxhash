@@ -1,1 +1,9 @@
 # xxhash in pure Java
+
+[xxHash](https://code.google.com/p/xxhash/) pure Java implementation.
+
+Just ported, not tested yet, will includes bugs and problems.
+
+# LICENSE
+
+New BSD License
