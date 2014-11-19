@@ -1,0 +1,3 @@
+// vim:set sts=4 sw=4 tw=0 et ft=groovy:
+
+rootProject.name = 'xxhash'
