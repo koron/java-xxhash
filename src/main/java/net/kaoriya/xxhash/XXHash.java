@@ -5,8 +5,8 @@ public class XXHash {
     public static int PRIME32_1 = 0x9e3779b1;
     public static int PRIME32_2 = 0x85ebca77;
     public static int PRIME32_3 = 0xc2b2ae3d;
-    public static int PRIME32_4 =  668265263;
-    public static int PRIME32_5 =  374761393;
+    public static int PRIME32_4 = 0x27d4eb2f;
+    public static int PRIME32_5 = 0x165667b1;
 
     public static int hash32(byte[] b, int off, int len, int seed) {
         int h32 = 0;
