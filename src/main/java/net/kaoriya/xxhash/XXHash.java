@@ -78,21 +78,13 @@ public class XXHash {
             |   ((int)b[off    ] & 0xFF);
     }
 
-    // TODO:
-    public static long PRIME64_1 = 0x0000000000000000L;
-    public static long PRIME64_2 = 0x0000000000000000L;
-    public static long PRIME64_3 = 0x0000000000000000L;
-    public static long PRIME64_4 = 0x0000000000000000L;
-    public static long PRIME64_5 = 0x0000000000000000L;
-    /*
-    public static long PRIME64_1 = 11400714785074694791L;
-    public static long PRIME64_2 = 14029467366897019727L;
-    public static long PRIME64_3 =  1609587929392839161L;
-    public static long PRIME64_4 =  9650029242287828579L;
-    public static long PRIME64_5 =  2870177450012600261L;
-    */
+    public static long PRIME64_1 = 0x9E3779B185EBCA87L;
+    public static long PRIME64_2 = 0xC2B2AE3D27D4EB4FL;
+    public static long PRIME64_3 = 0x165667B19E3779F9L;
+    public static long PRIME64_4 = 0x85EBCA77C2B2AE63L;
+    public static long PRIME64_5 = 0x27D4EB2F165667C5L;
 
-    public static long xxh64(byte[] b, int off, int len, long seed) {
+    public static long hash64(byte[] b, int off, int len, long seed) {
         long h64 = 0;
         int p = off, end = off + len;
 
@@ -120,6 +112,9 @@ public class XXHash {
                 v4 *= PRIME64_1;
                 p += 8;
             }
+
+            h64 = rotl64(v1, 1) + rotl64(v2, 7) + rotl64(v3, 12)
+                + rotl64(v4, 18);
 
             v1 *= PRIME64_2;
             v1 = rotl64(v1, 31);
@@ -172,11 +167,11 @@ public class XXHash {
             p += 1;
         }
 
-        h64 ^= h64 >> 33;
+        h64 ^= h64 >>> 33;
         h64 *= PRIME64_2;
-        h64 ^= h64 >> 29;
+        h64 ^= h64 >>> 29;
         h64 *= PRIME64_3;
-        h64 ^= h64 >> 32;
+        h64 ^= h64 >>> 32;
 
         return h64;
     }
