@@ -2,11 +2,11 @@ package net.kaoriya.xxhash;
 
 public class XXHash {
 
-    public static int PRIME32_1 = 0x9e3779b1;
-    public static int PRIME32_2 = 0x85ebca77;
-    public static int PRIME32_3 = 0xc2b2ae3d;
-    public static int PRIME32_4 = 0x27d4eb2f;
-    public static int PRIME32_5 = 0x165667b1;
+    public static int PRIME32_1 = 0x9E3779B1;
+    public static int PRIME32_2 = 0x85EBCA77;
+    public static int PRIME32_3 = 0xC2B2AE3D;
+    public static int PRIME32_4 = 0x27D4EB2F;
+    public static int PRIME32_5 = 0x165667B1;
 
     public static int hash32(byte[] b, int off, int len, int seed) {
         int h32 = 0;
@@ -53,7 +53,7 @@ public class XXHash {
         }
 
         while (p < end) {
-            h32 += ((int)b[p] & 0xff) * PRIME32_5;
+            h32 += ((int)b[p] & 0xFF) * PRIME32_5;
             h32 = rotl32(h32, 11) * PRIME32_1;
             p += 1;
         }
@@ -72,10 +72,10 @@ public class XXHash {
     }
 
     public static int get32bits(byte[] b, int off) {
-        return (((int)b[off    ] & 0xff) << 24)
-            |  (((int)b[off + 1] & 0xff) << 16)
-            |  (((int)b[off + 2] & 0xff) <<  8)
-            |   ((int)b[off + 3] & 0xff);
+        return (((int)b[off + 3] & 0xFF) << 24)
+            |  (((int)b[off + 2] & 0xFF) << 16)
+            |  (((int)b[off + 1] & 0xFF) <<  8)
+            |   ((int)b[off    ] & 0xFF);
     }
 
     // TODO:
@@ -161,13 +161,13 @@ public class XXHash {
         }
 
         if (p + 4 <= end) {
-            h64 ^= ((long)get32bits(b, p) & 0xffffffffL) * PRIME64_1;
+            h64 ^= ((long)get32bits(b, p) & 0xFFFFFFFFL) * PRIME64_1;
             h64 = rotl64(h64, 23) * PRIME64_2 + PRIME64_3;
             p += 4;
         }
 
         while (p < end) {
-            h64 ^= ((long)b[p] & 0xffL) * PRIME64_5;
+            h64 ^= ((long)b[p] & 0xFFL) * PRIME64_5;
             h64 = rotl64(h64, 11) * PRIME64_1;
             p += 1;
         }
@@ -186,14 +186,14 @@ public class XXHash {
     }
 
     public static long get64bits(byte[] b, int off) {
-        return (((long)b[off    ] & 0xff) << 56)
-            |  (((long)b[off + 1] & 0xff) << 48)
-            |  (((long)b[off + 2] & 0xff) << 40)
-            |  (((long)b[off + 3] & 0xff) << 32)
-            |  (((long)b[off + 4] & 0xff) << 24)
-            |  (((long)b[off + 5] & 0xff) << 16)
-            |  (((long)b[off + 6] & 0xff) <<  8)
-            |   ((long)b[off + 7] & 0xff);
+        return (((long)b[off + 7] & 0xFF) << 56)
+            |  (((long)b[off + 6] & 0xFF) << 48)
+            |  (((long)b[off + 5] & 0xFF) << 40)
+            |  (((long)b[off + 4] & 0xFF) << 32)
+            |  (((long)b[off + 3] & 0xFF) << 24)
+            |  (((long)b[off + 2] & 0xFF) << 16)
+            |  (((long)b[off + 1] & 0xFF) <<  8)
+            |   ((long)b[off    ] & 0xFF);
     }
 
 }
